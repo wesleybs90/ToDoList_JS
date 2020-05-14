@@ -34,6 +34,8 @@ input.addEventListener('keypress', function (event) {
 //quando clicar no chech fazer ação
 board.addEventListener('click', function (event) {
     if (event.target.classList.value === 'icon') {
-        event.target.closest('.tarefa').remove();
+        // event.target.closest('.tarefa').remove();
+        event.target.parentNode.parentNode.remove();
     }
+    
 });
