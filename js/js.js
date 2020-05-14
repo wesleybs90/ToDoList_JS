@@ -1,12 +1,17 @@
 let input = document.getElementById('novaTarefa');
 let add = document.getElementById('add');
-let check = document.querySelectorAll('#board img');
+// let check = document.querySelectorAll('#board img');
 let board = document.getElementById('board');
 
 //quando clicar no add fazer ação
-add.addEventListener('click', function () {
+function adicionarTarefa() {
     //capturar o valor do input
     let tarefa = input.value;
+
+    if (tarefa.trim().length == 0) {
+        input.style.borderColor = 'red';
+        return alert('Digite algo antes de enviar tarefa');
+    }
 
     //gerar o card
     board.innerHTML += `<div class="tarefa">\n
@@ -16,11 +21,19 @@ add.addEventListener('click', function () {
 
     //limpar o input
     input.value = '';
+}
+
+add.addEventListener('click', adicionarTarefa);
+
+input.addEventListener('keypress', function (event) {
+    if (event.key === 'Enter') {
+        adicionarTarefa();
+    }
 });
 
 //quando clicar no chech fazer ação
-check.addEventListener('click', function (e) {
-    //apagar tarefa
-    console.log(e)
+board.addEventListener('click', function (event) {
+    if (event.target.classList.value === 'icon') {
+        event.target.closest('.tarefa').remove();
+    }
 });
-
